@@ -1,0 +1,12 @@
+---
+- hosts: remote
+  gather_facts: False
+  tasks:
+   - name: Install NGINX
+     apt: pkg=nginx state=present update_cache=true
+     notify:
+      - start nginx
+  handlers:
+  - name: start nginx
+    service: name=nginx state=started
+...
